@@ -245,7 +245,7 @@ components:
         password:
           type: string
       example:
-        first_name: Franco
-        last_name: Noroña
-        email: franco@example.com
-        password: nuevaClave123
+        first_name: Ada
+        last_name: Lind
+        email: Blaze.Harris@hotmail.com
+        password: coder123
