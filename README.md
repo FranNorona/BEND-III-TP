@@ -54,16 +54,29 @@ El módulo `/api/users` está completamente documentado en Swagger, incluyendo p
 ## 📦 Estructura del proyecto
 
 ```bash
-src/
-├── controllers/
-├── routes/
-├── services/
-├── dao/
-├── mocks/
-├── docs/
-│   └── swagger.yaml
-├── app.js
-└── server.js
+.
+├── src/
+│   ├── controllers/     # Lógica para manejar las peticiones HTTP
+│   ├── dao/             # Acceso a datos y conexión con MongoDB
+│   ├── docs/            # Documentación Swagger y otros archivos técnicos
+│   ├── dto/             # Objetos de transferencia de datos
+│   ├── mocks/           # Generación de datos simulados (usuarios y mascotas)
+│   ├── public/          # Archivos estáticos (si se usan)
+│   ├── repository/      # Lógica de persistencia y consultas
+│   ├── routes/          # Definición de rutas y endpoints
+│   ├── services/        # Lógica de negocio
+│   ├── utils/           # Funciones auxiliares y herramientas
+│   ├── app.js           # Configuración principal de la app
+│   └── server.js        # Punto de entrada del servidor
+├── test/                # Tests funcionales con Mocha, Chai y Supertest
+├── .dockerignore        # Archivos ignorados al construir la imagen Docker
+├── .env                 # Variables de entorno (no se sube al contenedor)
+├── .gitignore           # Archivos ignorados por Git
+├── Dockerfile           # Instrucciones para construir la imagen Docker
+├── package-lock.json    # Mapa de dependencias exactas
+├── package.json         # Configuración del proyecto y scripts
+├── README.md            # Documentación del proyecto
+
 ```
 
 ## 🐳 Docker
