@@ -6,9 +6,14 @@ export const generateMockPets = (count = 100) => {
   for (let i = 0; i < count; i++) {
     pets.push({
       _id: faker.database.mongodbObjectId(),
-      name: faker.animal.name(),
-      species: faker.animal.type(),
-      age: faker.number.int({ min: 1, max: 15 }),
+      name: faker.word.noun(),
+      species: faker.helpers.arrayElement([
+        "perro",
+        "gato",
+        "pájaro",
+        "hamster",
+      ]),
+      age: faker.datatype.number({ min: 1, max: 15 }),
       adopted: faker.datatype.boolean(),
     });
   }

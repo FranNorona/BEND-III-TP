@@ -8,8 +8,8 @@ export const generateMockUsers = async (count = 50) => {
   for (let i = 0; i < count; i++) {
     users.push({
       _id: faker.database.mongodbObjectId,
-      first_name: faker.person.firstName(),
-      last_name: faker.person.lastName(),
+      first_name: faker.name.firstName(),
+      last_name: faker.name.lastName(),
       email: faker.internet.email(),
       password: hashedPassword,
       role: faker.helpers.arrayElements(["users", "admin"]),

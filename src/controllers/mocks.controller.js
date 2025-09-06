@@ -8,7 +8,7 @@ import petModel from "../dao/models/Pet.js";
 
 export const getMockingPets = (req, res) => {
   const pets = generateMockPets();
-  res.json(pets);
+  res.status(200).json({ status: "success", payload: pets });
 };
 
 export const getMockingUsers = async (req, res) => {
@@ -26,12 +26,18 @@ export const getMockingUsers = async (req, res) => {
 export const generateData = async (req, res) => {
   const { users = 0, pets = 0 } = req.body;
 
+  if (users <= 0 || pets < 0) {
+    return res
+      .status(400)
+      .json({ error: "Parámetros inválidos: 'users' debe ser mayor a 0" });
+  }
+
   try {
     const hashedPassword = await createHash("coder123");
 
     const userMocks = Array.from({ length: users }, () => ({
-      first_name: faker.person.firstName(),
-      last_name: faker.person.lastName(),
+      first_name: faker.name.firstName(),
+      last_name: faker.name.lastName(),
       email: faker.internet.email(),
       password: hashedPassword,
       role: faker.helpers.arrayElement(["user", "admin"]),
@@ -45,24 +51,11 @@ export const generateData = async (req, res) => {
       const specie = faker.helpers.arrayElement([
         "perro",
         "gato",
-        "pajaro",
+        "pájaro",
         "hamster",
       ]);
 
-      let name;
-      switch (specie) {
-        case "perro":
-          name = faker.animal.dog();
-          break;
-        case "gato":
-          name = faker.animal.cat();
-          break;
-        case "pajaro":
-          name = faker.animal.bird();
-          break;
-        default:
-          name = faker.person.firstName();
-      }
+      const name = faker.word.noun();
 
       return {
         name,
@@ -70,7 +63,7 @@ export const generateData = async (req, res) => {
         birthDate: faker.date.birthdate({ min: 1, max: 15, mode: "age" }),
         adopted: faker.datatype.boolean(),
         owner: randomOwner._id,
-        image: faker.image.urlPicsumPhotos(),
+        image: faker.image.animals(),
       };
     });
 
